@@ -83,10 +83,19 @@ Contamination Delay or tcd: It is the smallest time from the 50% input crossing 
 ## MY WORK 
 
 ### (1) designing circuit in cadence 
+
+
 using cadence 180 node technology , keeping L lower possible (180 nm ) and width(n) = 2um ,width(p) = 4um , this is intially setup
-<img width="327" alt="123095880-277c6980-d44c-11eb-95e7-2a85430fdf51" src="https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/3c45232d-9808-4644-a668-bd7c0193f609">
+
+![Virtuoso® Schematic Editor L Editing_ RAHULP inv3 schematic _@mirage 22-08-2023 23_24_29](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/d26e8d4f-a6d9-483e-adad-7b08f26aced3)
+
+
+![Virtuoso® Symbol Editor L Editing_ RAHULP inverte2 symbol _@mirage 22-08-2023 23_20_36](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/36e503dd-1027-4841-b2ee-33d51ee0f7ce)
 
 ### (2) test the circuit 
+
+![Virtuoso® Schematic Editor L Editing_ RAHULP inv3 schematic _@mirage 22-08-2023 23_33_59](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/850c8648-fee3-4190-8a36-b6d9f45178be)
+
 
 ### (3) transient analysis
 
