@@ -36,15 +36,7 @@ In both digital and analog design, CMOS inverters serve as versatile components 
 
 
 
-### The contents are organized in the below metioned sequence.
 
-1. **Inverter Schematic**
-2. **Test Schematic** 
-3. **Transient Analysis** 
-4. **DC Analysis: VTC Curve**
-5. **Netlist Generation**
-6. **Layout**
-7. **Swap NMOS and PMOS: Transient Analysis, VTC**
 
 #### Software of Use: Cadence Virtuoso
 
@@ -82,54 +74,69 @@ Contamination Delay or tcd: It is the smallest time from the 50% input crossing 
 
 ## MY WORK 
 
+I used the gpdk 90nm library in Cadence virtuoso, conducting transient and DC analysis on the inverter. I calculated parameters such as noise margin, power consumption, rise time, and propagation delay for the inverter.
+Fun part was analysing the effect of W/L ratio, Power supply and fanout on these parameters. Some of the notable conclusions are:
+**Propagation delay:**
+upon increasing W/L ratio, propagation delay decreases (values calculated for T rise = 10ps)
+W/L= 120/100; Tpd = 4.6223ps
+W/L = 240/100; Tpd = 3.7765ps
+
+**Effect of W/L ratio :**
+W/L(pmos) >W/L(nmos) then cmos acts as a strong pullup network.
+W/L(pmos) < W/L(nmos) then cmos acts as a strong pulldown network.
+
+**Power consumption :**
+- upon reducing W/L ratio power consumption decreases.
+- upon reducing Vdd power consumption reduces.
+
+Three golden methods to increase speed of the inverter (rise time reduction) :
+
+🔸Increase W/L ratio: More W/L = more current = faster load capacitance charging.
+
+🔸Increase power supply (Vdd): Higher Vdd = higher current flow = faster load capacitance charging.
+
+🔸Reduce load capacitance: Less capacitance = quicker charging = faster circuit response.
+
+I also made the Physical layout of the inverter and then performed the LVS. Implementing the theoretical concepts on an industry level tool was a great learning experience 
 ### (1) designing circuit in cadence 
 
 
-using cadence 180 node technology , keeping L lower possible (180 nm ) and width(n) = 2um ,width(p) = 4um , this is intially setup
+using cadence 90 node technology , keeping L lower possible (100 nm )  , this is intially setup
 
-![Virtuoso® Schematic Editor L Editing_ RAHULP inv3 schematic _@mirage 22-08-2023 23_24_29](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/d26e8d4f-a6d9-483e-adad-7b08f26aced3)
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/b295309f-f321-49cb-926d-c76a77f6e9f6)
 
-
-![Virtuoso® Symbol Editor L Editing_ RAHULP inverte2 symbol _@mirage 22-08-2023 23_20_36](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/36e503dd-1027-4841-b2ee-33d51ee0f7ce)
 
 ### (2) test the circuit 
 
-![Virtuoso® Schematic Editor L Editing_ RAHULP inv3 schematic _@mirage 22-08-2023 23_33_59](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/850c8648-fee3-4190-8a36-b6d9f45178be)
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/f25fa154-f99f-4a16-934c-34e5d0b4e6f3)
 
 
-### (3) transient analysis
 
-<img width="824" alt="123097318-ab832100-d44d-11eb-91e8-2a85e8ddade3" src="https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/c5bf1f4f-e1ae-414a-854c-207216950151">
+### (3) LVS
 
-### (4) Dc analysis ; VTC curve
-A) Electrically symmetric inverter (Wp=4um; Wn=2um)
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/f536f938-2b71-44cf-8f29-7a67ad754a3e)
 
-<img width="760" alt="123097452-c81f5900-d44d-11eb-8931-64a1b50ec908" src="https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/70216e40-fc5c-4b8b-8f79-d52e2c303f17">
+### (4) Effect of W/L ratio
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/ce2fc74a-7068-42c9-aa7f-9e8c0933164c)
+
+### (5) Effect of W/L on Transfer charecteristics
+
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/0d18fb88-b305-4ac4-b7d4-801ae2c579b2)
+### (6) Effect of W/L on Power consumption
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/ef8dd65e-c751-416d-b72a-f348a65d5be8)
+### (7) Effect of Vdd on power consumption
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/d1ab45e3-041f-47c4-99b9-a9c8a28f507e)
+
+### (8) Effect of load capacitance on rise time
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/911da1cc-a54a-488b-9a6b-1720f2f94af4)
+
+### (9) Noise Margin parameter
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/f225c53c-a186-4604-ae54-24ecf12a4016)
+
+### (10) Layout
+![image](https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/5a15f023-bfce-48c4-8c33-c29c1a9c713e)
 
 
-B) Inverter with stronger PMOS (Wp=8um; Wn=2um)
-
-<img width="759" alt="123097515-d8cfcf00-d44d-11eb-8c09-a331b6831b3f" src="https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/53087488-3b41-46fc-99ed-7e672a5a563d">
-
-
-C) Inverter with stronger NMOS (Wp=2um; Wn=2um)
-
-
-<img width="760" alt="123097658-f866f780-d44d-11eb-968a-53687020be36" src="https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/b9e20a2d-904f-4e8a-89e8-0a7180928cab">
-
-### Swap NMOS and PMOS: Transient Analysis, VTC
-
-The circuit is modified by swapping NMOS and PMOS with each other. The expected behaviour of the circuit is a buffer with weak output logics. 
-
-Input and Output waveform for transient analysis:
-
-<img width="818" alt="123412772-9d5d0e00-d5cf-11eb-84e6-1a0b863aa091" src="https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/7a3da847-0dc7-46d7-9f35-0b77bc3fc8f5">
-
-Notably, we can observe reduction in the voltage swing as expected.
-
-VTC - Plot between input and output:
-
-<img width="755" alt="123412816-a8b03980-d5cf-11eb-9a7c-c137d22600d8" src="https://github.com/Rahulprakash77/CMOS-INVERTER-DESIGN-/assets/130161648/4f75c101-1bf6-4a11-a156-c58bf636a54b">
 
 
 
